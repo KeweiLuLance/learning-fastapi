@@ -1,0 +1,13 @@
+[Unit]
+Description=learning fastapi application
+After=network.target
+
+[Service]
+User=lance
+Group=lance
+WorkingDirectory=/home/lance/app/src/
+Environment="PATH=/home/lance/app/venv/bin"
+ExecStart=/home/lance/app/venv/bin/gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app --bind 0.0.0.0:8000
+
+[Install]
+WantedBy=multi-user.target
